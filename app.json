@@ -10,7 +10,7 @@
   "success_url": "/",
   "env": {
     "DISCORD_TOKEN": {
-      "description": "The token for your discord bot"
+      "description": ""
     },
     "NASA": {
       "description": "For NASA Picture of the Day"
