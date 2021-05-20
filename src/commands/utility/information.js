@@ -30,18 +30,39 @@ module.exports =
                 unit = "day(s)";
             }
 
-            const info = new Embed()
-                .setTitle("Info")
-                .addFields(
-                    { name: "Version", value: this.client.config.version },
-                    { name: "Uptime", value: `${Math.floor(uptime)} ${unit}` },
-                    { name: "Todo List", value: this.client.config.todo.join("\n") },
-                    { name: "Recent Update", value: "Database corruption lead to data wipe, actively working on solution to fix data, +meme command added." },
-                    { name: "Credits", value: "Made by Kinglalu,DAONE, and LinuxTerm\nGraphics/Emojis by Goobermeister\nBug hunters: Mikelime & CompactCow\nOriginally by Horsey4 and Airplane Bong." },
-                    { name: "Supporters", value: `${msg.prefix}support for more info!` },
-                    { name: "Number of servers", value: this.client.guilds.cache.size },
-                    { name: "Number of Users", value: this.client.guilds.cache.reduce((a, b) => a + b.memberCount, 0).toLocaleString() }
-                );
-            msg.send(info);
+            var embed = {
+                "title": "General Purpose Bot for Discord",
+                "description": "ctGPB is a fork of the Mr. Grape Discord bot and was designed as a general purpose bot to assist with tasks on certain servers. ",
+                "thumbnail": {
+                  "url": "https://cdn.discordapp.com/embed/avatars/0.png"
+                },
+                "author": {
+                  "name": "ctaetcsh/ctGPB",
+                  "url": "https://github.com/ctaetcsh/ctGPB",
+                  "icon_url": "https://ctaetcsh.gay/ctaetcsh.png"
+                },
+                "fields": [
+                  {
+                    "name": "Credits",
+                    "value": "ctGPB is maintained and operated by ctaetcsh.\nMr. Grape was created by Kinglalu and DAONE."
+                  },
+                  {
+                    "name": "OSS Disclosure",
+                    "value": "ctGPB is Open Source Software licensed under the GNU GPL-3.0 License."
+                  },
+                  {
+                    "name": "Bot Version",
+                    "value": this.client.config.version,
+                    "inline": true
+                  },
+                  {
+                    "name": "Bot Uptime",
+                    "value": Math.floor(uptime)+" "+unit,
+                    "inline": true
+                  }
+                ]
+              };
+
+            msg.send({embed});
         }
     };
