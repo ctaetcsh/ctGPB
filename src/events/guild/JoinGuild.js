@@ -10,6 +10,6 @@ module.exports =
 
         main(guild) {
             this.client.console.log(`I joined ${guild.name}!`);
-            super.updatePresence();
+            
         }
     };

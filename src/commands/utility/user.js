@@ -1,4 +1,5 @@
 const { Command, Embed } = require("../../../lib");
+const ddub = require('dangeroususers');
 
 module.exports =
     class extends Command {
@@ -19,19 +20,53 @@ module.exports =
             return new Date(date).toLocaleString("en-US", dateOptions).split(" at").join("\n");
         }
 
+        
+
         main(msg) {
             const person = msg.mentions.users.first() || msg.author;
             const personAsGuild = msg.guild.member(person);
-            const personEmbed = new Embed()
-                .setAuthor(person.tag, person.displayAvatarURL())
-                .setThumbnail(person.displayAvatarURL())
-                .addFields(
-                    { name: "Joined", value: this.formatDate(personAsGuild.joinedAt), inline: true },
-                    { name: "Created", value: this.formatDate(person.createdAt), inline: true },
-                    { name: "Highest Role", value: personAsGuild.roles.highest },
-                    { name: "ID", value: person.id }
-                );
-                
-            msg.send(personEmbed);
+            //ddub.checkuser(person.id).then(data => holyfuck = data);
+
+            var embed = {
+                "title": "Information about "+person.tag,
+                "description": "No notes were found for this user.",
+                "thumbnail": {
+                  "url": person.displayAvatarURL()
+                },
+                "fields": [
+                  {
+                    "name": "Joined Server",
+                    "value": this.formatDate(personAsGuild.joinedAt),
+                    "inline": true
+                  },
+                  {
+                    "name": "Account Created",
+                    "value": this.formatDate(person.createdAt),
+                    "inline": true
+                  },
+                  {
+                    "name": "ID",
+                    "value": person.id,
+                    "inline": true
+                  },
+                  {
+                    "name": "Highest Role In This Server",
+                    "value": personAsGuild.roles.highest,
+                    "inline": true
+                  },
+                  {
+                    "name": "DDUB Abuse Score",
+                    "value": "Error",
+                    "inline": true
+                  },
+                  {
+                    "name": "DDUB Total Reports",
+                    "value": "Error",
+                    "inline": true
+                  }
+                ]
+              };
+
+            msg.send({embed});
         }
     };

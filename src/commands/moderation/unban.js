@@ -16,18 +16,16 @@ module.exports =
         }
 
         async main(msg) {
-            if (!msg.params[0]) return msg.send("Who should I ban?");
+            if (!msg.params[0]) return msg.send("<:modquestion:844860322002501642> You did not specify an ID to unban.");
 
             const bans = await msg.guild.fetchBans();
             
             const ban = bans.find(e => e.user.id === msg.params[0] || e.user.username === msg.params.join(" "))?.user;
 
-            if (!ban) return msg.send("That isn't a valid user to unban!");
-            else if (ban.id === msg.author.id) return msg.send("I don't think you're banned?");
-            else if (ban.id === this.client.user.id) return msg.send("I'm not banned.");
+            if (!ban) return msg.send("<:modquestion:844860322002501642> Specified user is either not banned or is an invalid user/ID.");
 
             await msg.guild.members.unban(ban.id);
 
-            msg.send(`${ban.username} was unbanned!`);
+            msg.send(`<:modok:844860321448984587> ${ban.username} was unbanned successfully.`);
         }
     };

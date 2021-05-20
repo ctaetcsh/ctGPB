@@ -18,13 +18,10 @@ module.exports =
         async main(msg) {
             const prefix = msg.params[0];
 
-            if (!prefix) return msg.send("Give me a prefix.");
+            if (!prefix) return msg.send("<:question:844860322065678366> You did not specify a new prefix.");
 
             msg.guild.setPrefix(prefix);
 
-            const prefixEmbed = new Embed()
-                .setTitle("Prefix")
-                .addField("Set to", prefix);
-            msg.send(prefixEmbed);
+            msg.send("<:blueok:844860322065678376> The server prefix has been changed to: **"+prefix+"**.");
         }
     };

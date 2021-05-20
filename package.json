@@ -31,6 +31,7 @@
     "@aero/centra": "^1.0.6",
     "centra": "^2.4.2",
     "chalk": "^4.1.0",
+    "dangeroususers": "^1.0.3",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "ffmpeg-static": "^4.3.0",

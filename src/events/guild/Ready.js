@@ -11,7 +11,6 @@ module.exports =
 
         main() {
             this.client.console.log("Ready!");
-            super.updatePresence();
         }
     };
 
