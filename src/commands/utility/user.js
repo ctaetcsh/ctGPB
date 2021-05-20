@@ -1,8 +1,8 @@
-const { Command, Embed } = require("../../../lib");
+const { Command, Embed, RequestCommand } = require("../../../lib");
 const ddub = require('dangeroususers');
 
 module.exports =
-    class extends Command {
+    class extends RequestCommand {
         constructor(...args) {
             super(...args, {
                 name: "user",
@@ -22,14 +22,23 @@ module.exports =
 
         
 
-        main(msg) {
+        async main(msg) {
             const person = msg.mentions.users.first() || msg.author;
             const personAsGuild = msg.guild.member(person);
-            //ddub.checkuser(person.id).then(data => holyfuck = data);
 
-            var embed = {
+            var userdatareturn = await this.request({
+              url: "https://ctaetcsh.gay/ctgpb.json",
+              params: {
+                  output: "JSON",
+                  format: "plaintext"
+              }
+            }).json();
+
+            ddub.checkuser(person.id).then(data => {
+              
+              var embed = {
                 "title": "Information about "+person.tag,
-                "description": "No notes were found for this user.",
+                "description": (userdatareturn[person.id] == undefined ? "No notes were found for this user." : userdatareturn[person.id].notes),
                 "thumbnail": {
                   "url": person.displayAvatarURL()
                 },
@@ -56,17 +65,20 @@ module.exports =
                   },
                   {
                     "name": "DDUB Abuse Score",
-                    "value": "Error",
+                    "value": data.score,
                     "inline": true
                   },
                   {
                     "name": "DDUB Total Reports",
-                    "value": "Error",
+                    "value": data.total_reports,
                     "inline": true
                   }
                 ]
               };
 
             msg.send({embed});
+            });
+
+            
         }
     };

@@ -15,13 +15,13 @@ module.exports =
         }
 
         async main(msg) {
-            if (!msg.params.length) return msg.send("Give me a question to answer!");
+            if (!msg.params.length) return msg.send("<:question:844860322065678366> You did not supply a question with the command.");
 
-            const queryMsg = await msg.send("Gimme a sec . . .");
+            const queryMsg = await msg.send("<:info:844860322019541043> Processing request with Wolfram Alpha...");
             const { queryresult } = await this.request({
                 url: "https://api.wolframalpha.com/v2/query",
                 params: {
-                    appid: process.env.WOLFRAM,
+                    appid: "AEX48V-WJYLXXX3L3",
                     input: msg.params.join(" "),
                     output: "JSON",
                     format: "plaintext"
@@ -29,17 +29,14 @@ module.exports =
             }).json();
 
             if (!queryresult.success) {
+                console.log(queryresult);
                 queryMsg.delete();
-                return msg.send`Unable to process ${msg.params.join(" ")}`;
+                return msg.send("<:error:844860321705492490> Unable to process this request.");
             }
 
             const answer = queryresult.pods[1].subpods[0].plaintext;
 
-            const wolframEmbed = new Embed()
-                .setTitle("Answer")
-                .setDescription(answer.endsWith(".") ? answer : `${answer}.`)
-                .setFooter("Powered by Wolfram|Alpha");
             queryMsg.delete();
-            msg.send(wolframEmbed);
+            msg.send("<:greenok:844860321462353940> Wolfram Alpha says: "+answer);
         }
     };
