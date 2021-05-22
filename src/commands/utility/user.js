@@ -7,10 +7,10 @@ module.exports =
             super(...args, {
                 name: "user",
                 type: "utility",
-                description: "Get basic user info.",
+                description: "Get information about a user. ",
                 usage: "<optional user>",
                 aliases: ["usr","userinfo"],
-                saying: "Stop stalking.",
+                saying: "This command calls various APIs. For the sake of their servers, please do not spam this command.",
                 cooldown: 2
             });
         }

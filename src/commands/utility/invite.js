@@ -15,16 +15,17 @@ module.exports =
 
         main(msg) {
             const invite = new Embed()
-                .setTitle("Invites")
+                .setTitle("Add ctGPB to Your Server")
+                .setDescription("While ctGPB is designed to be general purpose, it has functionality that only works on certain servers. If you like, you can fork ctGPB into your own bot.")
                 .addFields(
                     {
-                        name: "Bot", value: `
-                        [Add it to your server!](${this.client.invite})`,
+                        name: "Add Bot", value: `
+                        [OAtuh2 Invite Link](${this.client.invite})`,
                         inline: true
                     },
                     {
-                        name: "Server", value: `
-                        [Mr.Grape Community](${this.client.config.serverInvite})`,
+                        name: "Join Primary Server", value: `
+                        [Invite to The Knowhere Bridge](https://discord.gg/q5PEuZ3T2u)`,
                         inline: true
                     }
                 );

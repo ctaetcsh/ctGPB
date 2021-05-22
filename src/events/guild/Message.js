@@ -11,7 +11,7 @@ module.exports =
         }
 
         async main(message) {
-
+            //TODO: Change this
             if (message.content === this.client.mention) {
                 const helloEmbed = new Embed()
                     .setTitle("Hello!")
